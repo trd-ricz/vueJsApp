@@ -4,14 +4,16 @@ const Posts = {
 
   state: {
     count: 0,
-    post : []
+    post : [],
+    apiToken : '',
+    frontUrl : 'http://laravel7.localhost/',
+    backUrl : 'http://192.168.224.5:80/',
   },
   mutations: {
     increment (state,pl) {
       if(pl){
         state.count+=pl
       }else{
-        console.log('dsasda',pl)
         if(pl == 0){return}
         state.count++
       }
@@ -20,7 +22,6 @@ const Posts = {
       state.count--
     },
     addPost(state,pl){
-      console.log(pl,state)
       state.post.push(pl)
     },
     defaultPost(state, pl){
@@ -42,6 +43,12 @@ const Posts = {
         }
       })
     },
+    setApiToken(state,pl){
+     state.apiToken = pl
+    },
+    updateApi(state,pl){
+     state.apiToken = pl
+    },
 
   },
   actions : {
@@ -62,6 +69,24 @@ const Posts = {
     },
     updatePost(context, pl){
       context.commit('updatePost',pl)
+    },
+    generateApiToken(context, pl){
+      context.commit('setApiToken',response.data)
+    },
+    getPostApi(context,pl){
+      let url = 'api/get_api'
+      axios.defaults.headers.common = { 'Authorization': 'Bearer ' +context.state.apiToken }
+      axios.get(
+        `${context.state.frontUrl}${url}`
+      ).then( (response) => {
+       if(!response.data.status){alert(response.data.message); return;}
+       context.commit('defaultPost',response.data.value)
+       context.commit('increment', response.data.value.length)
+     })
+    },
+    
+    updateApi(context, pl){
+     context.commit('updateApi',pl.target.value)
     },
 
   },

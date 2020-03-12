@@ -2,6 +2,8 @@
   <div>
    <h3>TOP SECTION</h3>
    <p>There are <i>{{count}}</i> Post.</p>
+    
+   <input placeholder="paste your token" type="text" @change="updateApi">
   </div>
 </template>
 <script>
@@ -32,7 +34,9 @@ export default {
   beforeDestroy() {},
 
   methods: {
-
+   ...mapActions('posts/',[
+    'updateApi',
+   ]),
     
     
   }

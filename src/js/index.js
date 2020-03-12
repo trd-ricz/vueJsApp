@@ -9,6 +9,7 @@ import Vue from 'vue';
 import store from './store'
 import Home from './components/Home.vue';
 import Post from './components/Posts.vue';
+import Chat from './components/Chat.vue';
 
 window.axios = require('axios');
 
@@ -17,5 +18,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.App = new Vue({
  el: '#app',
  store,
- components: {Home,Post},
+ components: {Home,Post,Chat},
 })

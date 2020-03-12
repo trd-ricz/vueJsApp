@@ -1,12 +1,13 @@
 <template>
-  <div style="height: 100%;">
+  <div>
   <h3>POST SECTION </h3>
    <ol>
     <li v-for="post in posts">
       <p> Content : {{post.content}} </p>
       <p> Author : {{post.author}} </p>
       <p> Date : {{post.date}} </p>
-      <button @click="deletePost(post.row_id)">Delete</button>
+      <p> Level : {{post.post_level}} </p>
+      <button @click="delPost(post.row_id)">Delete</button>
       <button @click="editPost(post.row_id)">Edit</button>
       <hr>
     </li>
@@ -15,6 +16,7 @@
    <textarea v-model="textValue"></textarea>
    <button v-if="isEdit" @click="edit">Edit</button>
    <button v-else @click="submitPost">Submit</button>
+   <button @click="getPostApi">Get Post Api</button>
   </div>
 </template>
 <script>
@@ -47,10 +49,9 @@ export default {
     ])
   },
   mounted() {
-    let default_value = (this.defaultPosts) ? this.defaultPosts : []
-    console.log(default_value)
-    this.defaultPost(default_value)
-    this.increment(default_value.length)
+/*     let default_value = (this.defaultPosts) ? this.defaultPosts : [] */
+/*     this.defaultPost(default_value)
+    this.increment(default_value.length) */
   },
 
   beforeDestroy() {},
@@ -62,7 +63,8 @@ export default {
       'deletePost',
       'decrement',
       'updatePost',
-      'defaultPost'
+      'defaultPost',
+      'getPostApi'
     ]),
 
     submitPost(){
@@ -77,7 +79,7 @@ export default {
       this.increment()
       this.textValue = ""
     },
-    deletePost (id) {
+    delPost (id) {
       this.deletePost(id)
       this.decrement()
     },
@@ -93,6 +95,8 @@ export default {
         value : this.textValue,
         postId : this.editId
       })
+      this.isEdit = false
+      this.textValue = ""
     }
   }
 };
