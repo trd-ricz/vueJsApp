@@ -21,6 +21,9 @@ if (typeof io !== 'undefined') {
   window.Echo = new Echo({
     broadcaster: 'socket.io',
     host: 'http://laravel7.localhost:40911',
+    pingTimeout : 120000,
+    pingInterval : 25000
+    
   });
 
 }
