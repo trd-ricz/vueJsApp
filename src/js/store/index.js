@@ -20,7 +20,7 @@ window.io = require('socket.io-client');
 if (typeof io !== 'undefined') {
   window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: 'http://laravel7.localhost:40911',
+    host: 'http://139.180.135.129:6001',
     pingTimeout : 120000,
     pingInterval : 25000
     
