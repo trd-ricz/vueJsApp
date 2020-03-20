@@ -42,7 +42,7 @@ export default {
    },
   },
   mounted() {
-   this.setChatApiUrl("http://139.180.135.129")
+   this.setChatApiUrl("http://139.180.135.129/")
    window.Echo.channel("laravel_database_chat_message")
    .listen("ChatEvent", e => {this.receiveMessage(e.chat)})
   },
