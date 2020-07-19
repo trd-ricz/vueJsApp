@@ -2,7 +2,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "laravel-echo": "^1.6.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "socket.io-client": "^2.3.0",
     "vue": "^2.6.11",
     "vuejs": "^3.0.1",
